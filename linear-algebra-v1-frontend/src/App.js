@@ -6,6 +6,8 @@ import Twolineequation from "./screens/twolineeequation";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import Mainscreen from "./screens/mainscreen/mainscreen";
+import Elementarymath from "./screens/elementaryMath/elementarymath";
 
 function App() {
   return (
@@ -32,9 +34,10 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
-        <Route path="/twolineequation" element={<Twolineequation/>} />
+        <Route path="/" element={<Mainscreen />} />
+        <Route path="/twolineequation" element={<Twolineequation />} />
+        <Route path="/elementarymath" element={<Elementarymath />} />
       </Routes>
-      ;
     </>
   );
 }

@@ -1,6 +1,9 @@
 import numpy.linalg as linealg
 import matplotlib
 import matplotlib.pyplot as plt
+import sympy
+
+######## --------*****---Two Line Equation ---****--------#######
 
 matplotlib.use('Agg')
 
@@ -107,7 +110,8 @@ def generateGraph(dataset):
              label=generateEquation(dataset[1]))
     typeofsoln = checkSolutiontype(dataset)
     if (typeofsoln['type'] == 'unique solution'):
-        plt.annotate(f"({round(soln[0],3)},{round(soln[1],3)})", xy=(soln[0], soln[1]))
+        plt.annotate(
+            f"({round(soln[0],3)},{round(soln[1],3)})", xy=(soln[0], soln[1]))
     ax.spines['bottom'].set_position('zero')
     ax.spines['left'].set_position('zero')
     ax.spines['right'].set_color('none')
@@ -127,6 +131,26 @@ def generateEquation(data):
         res = f'{a}x + {b}y = {c}'
     return res
 
-# print(solveEquation(data))
-# print(checkSolutiontype(data))
-generateGraph(data)
+####################### ----------------------------------------------------------######################
+
+
+######## -----------Multiple line equation--------#######
+
+def solve(data):
+    data = {
+        "equation1": "x+y+z=1",
+        "equation2": "x-y-z=1",
+        "equation3": "x+y-z=1",
+    }
+    equations = []
+    symbols = set()
+    for i in data:
+        equation_data = data[i].split("=")
+        expression = sympy.parse_expr(equation_data[0])
+        equation = sympy.Eq(expression, float(equation_data[1]))
+        equations.append(equation)
+        for i in equation.free_symbols:
+            symbols.add(i)
+            
+    return list(sympy.linsolve(equations,tuple(symbols)))[0]
+
