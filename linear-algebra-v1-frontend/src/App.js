@@ -8,12 +8,14 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Mainscreen from "./screens/mainscreen/mainscreen";
 import Elementarymath from "./screens/elementaryMath/elementarymath";
+import Algebra from "./screens/algebra/algebra";
+import About from "./screens/about/about";
 
 function App() {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Container>
+        <Container fluid>
           <Navbar.Brand href="#home" className="brandname">
             LinearAlgebra
             <box-icon
@@ -37,6 +39,8 @@ function App() {
         <Route path="/" element={<Mainscreen />} />
         <Route path="/twolineequation" element={<Twolineequation />} />
         <Route path="/elementarymath" element={<Elementarymath />} />
+        <Route path="/algebra" element={<Algebra />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   );
